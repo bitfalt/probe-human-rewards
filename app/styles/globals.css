@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 122 40% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 36 100% 50%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body, #root {
+    @apply h-full bg-probe-background text-probe-text-primary antialiased;
+  }
+  
+  /* Mobile height fix for iOS */
+  .h-screen {
+    height: 100dvh;
+  }
+  
+  /* Button styles */
+  .btn-primary {
+    @apply bg-probe-primary text-white rounded-full py-3 px-6 font-medium hover:bg-probe-primary/90 transition-all;
+  }
+  
+  .btn-secondary {
+    @apply bg-probe-secondary text-white rounded-full py-3 px-6 font-medium hover:bg-probe-secondary/90 transition-all;
+  }
+  
+  .btn-outline {
+    @apply border border-probe-primary text-probe-primary rounded-full py-3 px-6 font-medium hover:bg-probe-primary/10 transition-all;
+  }
+  
+  /* Card styles */
+  .card-shadow {
+    @apply shadow-md hover:shadow-lg transition-shadow;
+  }
+  
+  /* Container */
+  .page-container {
+    @apply max-w-md mx-auto px-4 pb-20 pt-4;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  /* Add a bounce/springy animation */
+  .bounce {
+    animation: bounce 0.5s;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.5, 0.05, 1, .5);
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes bounce {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(0, 10px, 0); }
+  }
+  
+  /* Slide up animation */
+  .slide-up {
+    animation: slide-up 0.4s ease-out;
+  }
+  
+  @keyframes slide-up {
+    0% { transform: translateY(15px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  /* Enhanced focus */
+  .focus-enhanced:focus {
+    outline: 2px solid #1E88E5;
+    outline-offset: 2px;
+    transition: outline-offset 0.2s ease;
+  }
+}
