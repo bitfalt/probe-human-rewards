@@ -17,12 +17,12 @@ const Home = () => {
   return (
     <PageContainer>
       <div className="animate-fade-in">
-        <div className="flex justify-between items-center mb-6">
-          <div>
+        <div className="flex flex-col items-center mb-6">
+          <div className="text-center mb-2">
             <h1 className="text-2xl font-bold">Welcome back</h1>
             <p className="text-probe-text-secondary">Ready to earn some rewards?</p>
           </div>
-          <div className="bg-probe-primary/10 py-2 px-4 rounded-full">
+          <div className="bg-probe-primary/10 py-2 px-6 rounded-full inline-block">
             <span className="font-semibold text-probe-primary">250 tokens</span>
           </div>
         </div>

@@ -57,6 +57,7 @@ const COMPLETED_SURVEYS = [
     description: 'Tell us about your expectations and preferences.',
     reward: 25,
     timeEstimate: '3-5 min',
+    progress: 100, // Added progress property for completed surveys
   }
 ];
 
