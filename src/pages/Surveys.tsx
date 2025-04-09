@@ -155,7 +155,7 @@ const Surveys = () => {
                   description={survey.description}
                   reward={survey.reward}
                   timeEstimate={survey.timeEstimate}
-                  progress={100}
+                  progress={100} // All completed surveys have 100% progress
                   onStart={() => handleStartSurvey(survey.id)}
                 />
               ))
