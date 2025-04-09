@@ -58,7 +58,7 @@ const COMPLETED_SURVEYS = [
     description: 'Tell us about your expectations and preferences.',
     reward: 25,
     timeEstimate: '3-5 min',
-    progress: 100, // Progress property for completed surveys
+    progress: 100,
   }
 ];
 
@@ -72,7 +72,14 @@ export default function Surveys() {
   };
   
   // Filter surveys based on search query
-  const filterSurveys = (surveys: typeof AVAILABLE_SURVEYS) => {
+  const filterSurveys = (surveys: Array<{
+    id: string;
+    title: string;
+    description: string;
+    reward: number;
+    timeEstimate: string;
+    progress?: number;
+  }>) => {
     if (!searchQuery) return surveys;
     
     return surveys.filter(survey => 
