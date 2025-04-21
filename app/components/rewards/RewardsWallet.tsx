@@ -50,19 +50,19 @@ const RewardsWallet = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Card className="border border-gray-200 overflow-hidden">
-          <CardHeader className="pb-2 flex flex-row items-center justify-between bg-gradient-to-r from-[#1E88E5]/10 to-[#43A047]/10 pt-6">
-            <CardTitle className="text-xl text-[#212121]">Token Balance</CardTitle>
+        <Card className="border border-border overflow-hidden">
+          <CardHeader className="pb-2 flex flex-row items-center justify-between bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 pt-6">
+            <CardTitle className="text-xl text-foreground">Token Balance</CardTitle>
             <motion.div
               whileHover={{ rotate: 15, scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
-              <Coins className="h-7 w-7 text-[#43A047]" />
+              <Coins className="h-7 w-7 text-yellow-500"/>
             </motion.div>
           </CardHeader>
           <CardContent className="pt-4">
             <motion.div 
-              className="text-3xl font-bold text-[#212121] mb-1"
+              className="text-3xl font-bold text-foreground mb-1"
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               transition={{ 
@@ -76,14 +76,14 @@ const RewardsWallet = () => {
             </motion.div>
             
             <div className="flex items-center justify-between mb-5">
-              <p className="text-sm text-[#757575]">Available to claim</p>
-              <div className="flex items-center text-xs text-[#757575] bg-gray-100 rounded-full px-3 py-1">
+              <p className="text-sm text-muted-foreground">Available to claim</p>
+              <div className="flex items-center text-xs text-muted-foreground bg-muted/50 dark:bg-muted/30 rounded-full px-3 py-1">
                 <span className="mr-1">{mockWalletAddress}</span>
                 <motion.button
                   onClick={handleCopyAddress}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="ml-1 text-[#1E88E5]"
+                  className="ml-1 text-primary hover:text-primary/80"
                 >
                   {isCopied ? <Check size={14} /> : <Copy size={14} />}
                 </motion.button>
@@ -97,7 +97,10 @@ const RewardsWallet = () => {
               onHoverEnd={() => setIsClaimHovered(false)}
               whileTap={{ scale: 0.97 }}
             >
-              <Button className="w-full bg-[#43A047] hover:bg-[#388E3C] h-12 rounded-xl shadow-sm">
+              <Button 
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12 rounded-xl shadow-sm"
+                variant="default"
+              >
                 <motion.div
                   className="flex items-center"
                   animate={isClaimHovered ? { x: [0, -4, 0] } : {}}
@@ -117,8 +120,8 @@ const RewardsWallet = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <h2 className="text-xl font-semibold mb-4 text-[#212121]">Transaction History</h2>
-        <Card className="border border-gray-200 overflow-hidden">
+        <h2 className="text-xl font-semibold mb-4 text-foreground">Transaction History</h2>
+        <Card className="border border-border overflow-hidden">
           <CardContent className="p-0">
             {transactions.length > 0 ? (
               <div>
@@ -128,24 +131,32 @@ const RewardsWallet = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 + 0.3 }}
-                    whileHover={{ backgroundColor: "#f9fafb" }}
+                    whileHover={{ backgroundColor: "var(--muted)" }}
                   >
                     <div className="p-4 flex justify-between items-center">
                       <div className="flex items-center">
                         <motion.div 
-                          className={`p-2 rounded-full mr-3 ${transaction.type === 'credit' ? 'bg-[#E8F5E9] text-[#43A047]' : 'bg-[#FFEBEE] text-[#E53935]'}`}
+                          className={`p-2 rounded-full mr-3 ${
+                            transaction.type === 'credit' 
+                              ? 'bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-400' 
+                              : 'bg-destructive/10 text-destructive'
+                          }`}
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                         >
                           {transaction.type === 'credit' ? <ArrowUp size={16} /> : <ArrowDown size={16} />}
                         </motion.div>
                         <div>
-                          <div className="font-medium text-[#212121]">{transaction.description}</div>
-                          <div className="text-sm text-[#757575]">{transaction.date}</div>
+                          <div className="font-medium text-foreground">{transaction.description}</div>
+                          <div className="text-sm text-muted-foreground">{transaction.date}</div>
                         </div>
                       </div>
                       <motion.div 
-                        className={`font-semibold ${transaction.type === 'credit' ? 'text-[#43A047]' : 'text-[#E53935]'}`}
+                        className={`font-semibold ${
+                          transaction.type === 'credit' 
+                            ? 'text-green-600 dark:text-green-400' 
+                            : 'text-destructive'
+                        }`}
                         whileHover={{ scale: 1.05 }}
                       >
                         {transaction.amount}
@@ -156,7 +167,7 @@ const RewardsWallet = () => {
                 ))}
               </div>
             ) : (
-              <div className="p-6 text-center text-[#757575]">
+              <div className="p-6 text-center text-muted-foreground">
                 No transactions yet.
               </div>
             )}

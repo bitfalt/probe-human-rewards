@@ -24,7 +24,7 @@ const PageContainer = ({ children, hideNavigation = false, className = '' }: Pag
   }, []);
 
   return (
-    <div className={`min-h-screen bg-[#F9FAFB] overflow-hidden ${className}`}>
+    <div className={`min-h-screen bg-background overflow-hidden ${className}`}>
       <motion.div
         className="min-h-screen pb-16 flex flex-col"
         initial={{ opacity: 0 }}
@@ -47,8 +47,8 @@ const PageContainer = ({ children, hideNavigation = false, className = '' }: Pag
         >
           {children}
         </motion.main>
+        {!hideNavigation && <BottomNavBar />}
       </motion.div>
-      {!hideNavigation && <BottomNavBar />}
     </div>
   );
 };

@@ -53,9 +53,10 @@ const getSurveyById = (id: string): Survey => {
   };
 };
 
-export default function SurveyDetailPage({ params }: { params: { id: string } }) {
+export default function SurveyDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
-  const { id } = params;
+  const resolvedParams = React.use(params);
+  const { id } = resolvedParams;
   const [survey, setSurvey] = useState<Survey | null>(null);
   const [isVerified, setIsVerified] = useState(false);
   const [showVerificationModal, setShowVerificationModal] = useState(false);

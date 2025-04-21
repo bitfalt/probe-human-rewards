@@ -1,27 +1,13 @@
 import type { Metadata } from "next";
-import "@/app/styles/globals.css";
+import { Inter } from "next/font/google";
+import "./styles/globals.css";
 import { Providers } from "./providers";
 
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata: Metadata = {
-  title: "Probe - Complete surveys. Earn rewards.",
-  description: "Complete surveys, earn rewards, verified by humanity.",
-  authors: [{ name: "Lovable" }],
-  icons: {
-    icon: "/Probe.svg",
-    shortcut: "/Probe.svg",
-    apple: "/Probe.svg",
-  },
-  openGraph: {
-    title: "Probe - Complete surveys. Earn rewards.",
-    description: "Complete surveys, earn rewards, verified by humanity.",
-    type: "website",
-    images: ["https://lovable.dev/opengraph-image-p98pqg.png"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@lovable_dev",
-    images: ["https://lovable.dev/opengraph-image-p98pqg.png"],
-  },
+  title: "Probe Human Rewards",
+  description: "Reward your team with Probe Human Rewards",
 };
 
 export default function RootLayout({
@@ -30,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
     </html>
