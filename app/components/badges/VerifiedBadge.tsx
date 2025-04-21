@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 export default function VerifiedBadge() {
   return (
     <motion.div 
-      className="inline-flex items-center gap-1.5 py-1 px-2.5 bg-green-50 text-green-700 rounded-full text-xs font-medium"
+      className="inline-flex items-center gap-1.5 py-1 px-1 bg-green-50 text-green-700 rounded-full text-xs font-medium"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 

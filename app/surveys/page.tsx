@@ -6,8 +6,8 @@ export default function SurveysPage() {
   return (
     <PageContainer>
       <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4 text-[#212121]">Available Surveys</h1>
-        <p className="mb-4 text-[#757575]">Complete surveys to earn rewards.</p>
+        <h1 className="text-2xl font-bold mb-4 text-foreground">Available Surveys</h1>
+        <p className="mb-4 text-muted-foreground">Complete surveys to earn rewards.</p>
         <SurveyList />
       </div>
     </PageContainer>

@@ -18,7 +18,7 @@ const SignIn = () => {
   };
 
   return (
-    <PageContainer hideNavigation className="bg-gradient-to-b from-[#1E88E5]/10 to-[#F9FAFB]">
+    <PageContainer hideNavigation className="bg-gradient-to-b from-[#1E88E5]/10 to-[#F9FAFB] dark:bg-black dark:from-black dark:to-black">
       <div className="flex flex-col items-center justify-center min-h-[90vh] px-6">
         <motion.div 
           className="w-full max-w-md"
@@ -49,7 +49,7 @@ const SignIn = () => {
               />
             </motion.div>
             <motion.h1 
-              className="text-3xl font-bold mb-2 text-[#212121] text-center"
+              className="text-3xl font-bold mb-2 text-[#212121] dark:text-white text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -57,7 +57,7 @@ const SignIn = () => {
               Welcome to Probe
             </motion.h1>
             <motion.p 
-              className="text-[#757575] mb-2 text-center"
+              className="text-[#757575] dark:text-gray-400 mb-2 text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
@@ -71,7 +71,7 @@ const SignIn = () => {
               transition={{ delay: 0.5, duration: 0.5 }}
             />
             <motion.p 
-              className="text-sm text-[#757575] mb-8 text-center"
+              className="text-sm text-[#757575] dark:text-gray-400 mb-8 text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}

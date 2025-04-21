@@ -26,11 +26,11 @@ const SurveyCard = ({ survey }: SurveyCardProps) => {
   const getStatusColor = () => {
     switch (status) {
       case 'completed':
-        return 'bg-[#43A047]';
+        return 'bg-green-500 dark:bg-green-600';
       case 'in-progress':
-        return 'bg-[#FFB300]';
+        return 'bg-yellow-500 dark:bg-yellow-600';
       default:
-        return 'bg-[#1E88E5]';
+        return 'bg-blue-500 dark:bg-blue-600';
     }
   };
 
@@ -79,10 +79,10 @@ const SurveyCard = ({ survey }: SurveyCardProps) => {
       whileHover={{ y: -4 }}
       className="w-full"
     >
-      <Card className="overflow-hidden border border-gray-200 shadow-sm hover:shadow transition-all duration-300">
+      <Card className="overflow-hidden border-border hover:shadow transition-all duration-300">
         <CardHeader className="pb-2">
           <div className="flex justify-between items-center mb-2">
-            <CardTitle className="text-[#212121] text-lg">{title}</CardTitle>
+            <CardTitle className="text-foreground text-lg">{title}</CardTitle>
             <motion.span 
               className={`text-xs px-2 py-1 rounded-full text-white flex items-center gap-1 ${getStatusColor()}`}
               whileHover={{ scale: 1.05 }}
@@ -91,16 +91,16 @@ const SurveyCard = ({ survey }: SurveyCardProps) => {
               <span>{getStatusText()}</span>
             </motion.span>
           </div>
-          <CardDescription className="text-[#757575]">{description}</CardDescription>
+          <CardDescription className="text-muted-foreground">{description}</CardDescription>
         </CardHeader>
         <CardContent className="pb-2">
-          <div className="flex justify-between items-center text-sm text-[#757575]">
+          <div className="flex justify-between items-center text-sm text-muted-foreground">
             <div className="flex items-center">
               <Clock size={16} className="mr-1" />
               <span>{timeEstimate}</span>
             </div>
             <motion.div 
-              className="font-medium text-[#43A047] flex items-center"
+              className="font-medium text-green-500 dark:text-green-400 flex items-center"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
@@ -109,12 +109,12 @@ const SurveyCard = ({ survey }: SurveyCardProps) => {
           </div>
 
           {status !== 'available' && (
-            <div className="mt-4 w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+            <div className="mt-4 w-full bg-muted rounded-full h-2 overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${completionPercentage}%` }}
                 transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                className={`h-2 rounded-full ${status === 'completed' ? 'bg-[#43A047]' : 'bg-[#FFB300]'}`}
+                className={`h-2 rounded-full ${status === 'completed' ? 'bg-green-500 dark:bg-green-600' : 'bg-yellow-500 dark:bg-yellow-600'}`}
               />
             </div>
           )}
@@ -128,9 +128,9 @@ const SurveyCard = ({ survey }: SurveyCardProps) => {
             <Button 
               onClick={handleClick}
               className={`w-full flex justify-between items-center h-11 rounded-lg 
-                ${status === 'completed' ? 'bg-[#43A047] hover:bg-[#388E3C]' : 
-                  status === 'in-progress' ? 'bg-[#FFB300] hover:bg-[#FFA000] text-[#212121]' : 
-                  'bg-[#1E88E5] hover:bg-[#1976D2]'}`}
+                ${status === 'completed' ? 'bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700' : 
+                  status === 'in-progress' ? 'bg-yellow-500 hover:bg-yellow-600 dark:bg-yellow-600 dark:hover:bg-yellow-700 text-foreground' : 
+                  'bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700'}`}
             >
               <span>{getButtonText()}</span>
               <ArrowRight size={16} />

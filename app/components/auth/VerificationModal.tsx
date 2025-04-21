@@ -23,7 +23,7 @@ const DialogContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
   <DialogPortal>
-    <DialogOverlay />
+    <DialogOverlay className="bg-black/80" />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
@@ -40,10 +40,9 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 export interface VerificationModalProps {
   onVerified: () => void;
-  onClose: () => void;
 }
 
-const VerificationModal = ({ onVerified, onClose }: VerificationModalProps) => {
+const VerificationModal = ({ onVerified }: VerificationModalProps) => {
   const [isVerifying, setIsVerifying] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
@@ -60,13 +59,13 @@ const VerificationModal = ({ onVerified, onClose }: VerificationModalProps) => {
   };
 
   return (
-    <Dialog open={true} onOpenChange={onClose}>
-      <DialogContent className="max-w-sm mx-auto rounded-xl bg-white p-0 overflow-hidden border-none shadow-xl">
+    <Dialog open={true}>
+      <DialogContent className="max-w-sm mx-auto rounded-xl p-0 overflow-hidden border border-border bg-background">
         <DialogHeader className="p-6 pb-2">
           <div className="flex justify-between items-center">
-            <DialogTitle className="text-xl font-semibold text-[#212121]">Verify Your Humanity</DialogTitle>
+            <DialogTitle className="text-xl font-semibold text-foreground">Verify Your Humanity</DialogTitle>
           </div>
-          <DialogDescription className="text-[#757575]">
+          <DialogDescription className="text-muted-foreground">
             To access surveys and earn rewards, we need to verify you're human.
           </DialogDescription>
         </DialogHeader>
@@ -82,7 +81,7 @@ const VerificationModal = ({ onVerified, onClose }: VerificationModalProps) => {
             >
               <div className="flex flex-col items-center py-4">
                 <motion.div 
-                  className="w-28 h-28 bg-[#1E88E5]/10 rounded-full mb-5 flex items-center justify-center"
+                  className="w-28 h-28 bg-primary/10 dark:bg-primary/20 rounded-full mb-5 flex items-center justify-center"
                   initial={{ scale: 0.9 }}
                   animate={{ scale: 1 }}
                   transition={{ 
@@ -99,136 +98,67 @@ const VerificationModal = ({ onVerified, onClose }: VerificationModalProps) => {
                     transition={{ 
                       duration: 2.5,
                       repeat: Infinity,
-                      repeatType: "loop"
                     }}
                   >
-                    <Image 
-                      src="/Probe.svg" 
-                      width={56} 
-                      height={56} 
-                      alt="Probe Logo" 
-                      className="drop-shadow-md"
-                    />
+                    <Shield className="h-12 w-12 text-primary" />
                   </motion.div>
                 </motion.div>
-                <motion.div className="space-y-4 w-full">
-                  <motion.p 
-                    className="text-center mb-2 text-[#212121]"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    This is a one-time verification to ensure:
-                  </motion.p>
-                  <motion.ul 
-                    className="space-y-2 text-sm text-[#757575] mb-4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <li className="flex items-center">
-                      <span className="mr-2">✓</span> Each person can only participate once
-                    </li>
-                    <li className="flex items-center">
-                      <span className="mr-2">✓</span> Your survey responses are reliable
-                    </li>
-                    <li className="flex items-center">
-                      <span className="mr-2">✓</span> Rewards are distributed fairly
-                    </li>
-                  </motion.ul>
-                  <motion.div 
-                    className="w-full"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Button
-                      onClick={simulateVerification}
-                      className="w-full bg-[#1E88E5] hover:bg-[#1976D2] text-white h-12 rounded-xl shadow transition-all"
-                    >
-                      Verify with World ID
-                    </Button>
-                  </motion.div>
-                </motion.div>
+                <Button 
+                  onClick={simulateVerification}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                >
+                  Start Verification
+                </Button>
               </div>
             </motion.div>
           ) : isVerifying ? (
             <motion.div 
-              className="flex flex-col items-center justify-center h-52 p-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              className="p-6 pt-0"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              key="verifying"
             >
-              <div className="relative w-16 h-16">
+              <div className="flex flex-col items-center py-4">
                 <motion.div 
-                  className="absolute top-0 left-0 w-full h-full rounded-full border-t-2 border-b-2 border-[#1E88E5]"
+                  className="w-28 h-28 bg-primary/10 dark:bg-primary/20 rounded-full mb-5 flex items-center justify-center"
                   animate={{ rotate: 360 }}
-                  transition={{ 
-                    duration: 1.5, 
-                    repeat: Infinity, 
-                    ease: "linear" 
-                  }}
-                />
-                <motion.div 
-                  className="absolute top-1 left-1 w-[calc(100%-8px)] h-[calc(100%-8px)] rounded-full border-t-2 border-r-2 border-[#1E88E5]/60"
-                  animate={{ rotate: -360 }}
-                  transition={{ 
-                    duration: 2, 
-                    repeat: Infinity, 
-                    ease: "linear" 
-                  }}
-                />
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                >
+                  <Shield className="h-12 w-12 text-primary" />
+                </motion.div>
+                <p className="text-foreground font-medium mb-2">Verifying...</p>
+                <p className="text-muted-foreground text-sm text-center">
+                  Please wait while we verify your humanity
+                </p>
               </div>
-              <motion.p 
-                className="mt-6 text-[#212121] font-medium"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                Verifying your humanity...
-              </motion.p>
-              <motion.p 
-                className="mt-2 text-sm text-[#757575]"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                This will only take a moment
-              </motion.p>
             </motion.div>
           ) : (
             <motion.div 
-              className="flex flex-col items-center justify-center h-60 p-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              className="p-6 pt-0"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              key="complete"
             >
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ 
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 20
-                }}
-              >
-                <div className="rounded-full h-16 w-16 bg-[#43A047] flex items-center justify-center text-white">
-                  <CheckCircle size={30} />
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.3 }}
-                className="text-center"
-              >
-                <p className="mt-5 text-lg font-semibold text-[#212121]">Verification successful!</p>
-                <p className="mt-1 text-[#757575]">You're now ready to explore surveys</p>
-                <p className="mt-4 text-sm text-[#757575]">Your unique human verification is now complete. You can access all features of the app.</p>
-              </motion.div>
+              <div className="flex flex-col items-center py-4">
+                <motion.div 
+                  className="w-28 h-28 bg-green-100 dark:bg-green-900 rounded-full mb-5 flex items-center justify-center"
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 15
+                  }}
+                >
+                  <CheckCircle className="h-12 w-12 text-green-600 dark:text-green-400" />
+                </motion.div>
+                <p className="text-foreground font-medium mb-2">Verification Complete!</p>
+                <p className="text-muted-foreground text-sm text-center">
+                  You have been successfully verified
+                </p>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
