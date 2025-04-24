@@ -13,21 +13,18 @@ export type Database = {
         Row: {
           created_at: string
           id: number
-          number: number | null
           question_id: number | null
           responses: Json | null
         }
         Insert: {
           created_at?: string
           id?: number
-          number?: number | null
           question_id?: number | null
           responses?: Json | null
         }
         Update: {
           created_at?: string
           id?: number
-          number?: number | null
           question_id?: number | null
           responses?: Json | null
         }
@@ -214,9 +211,11 @@ export type Database = {
           created_at: string
           description: string | null
           end_date: string | null
+          estimated_time: number | null
           expect: Json | null
           id: number
           name: string | null
+          paid_amount: number | null
           start_date: string | null
           status_id: number | null
           updated_at: string | null
@@ -226,9 +225,11 @@ export type Database = {
           created_at?: string
           description?: string | null
           end_date?: string | null
+          estimated_time?: number | null
           expect?: Json | null
           id?: number
           name?: string | null
+          paid_amount?: number | null
           start_date?: string | null
           status_id?: number | null
           updated_at?: string | null
@@ -238,9 +239,11 @@ export type Database = {
           created_at?: string
           description?: string | null
           end_date?: string | null
+          estimated_time?: number | null
           expect?: Json | null
           id?: number
           name?: string | null
+          paid_amount?: number | null
           start_date?: string | null
           status_id?: number | null
           updated_at?: string | null
