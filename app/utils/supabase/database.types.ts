@@ -13,21 +13,18 @@ export type Database = {
         Row: {
           created_at: string
           id: number
-          number: number | null
           question_id: number | null
           responses: Json | null
         }
         Insert: {
           created_at?: string
           id?: number
-          number?: number | null
           question_id?: number | null
           responses?: Json | null
         }
         Update: {
           created_at?: string
           id?: number
-          number?: number | null
           question_id?: number | null
           responses?: Json | null
         }

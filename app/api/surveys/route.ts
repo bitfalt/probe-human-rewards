@@ -7,12 +7,13 @@ export async function GET() {
     
     const { data: surveys, error } = await supabase
       .from('Surveys')
-      .select('*')
-    //   .select(`
-    //     name,
-    //     paid_amount,
-    //     estimated_time
-    //   `)
+      .select(`
+        name,
+        paid_amount,
+        estimated_time,
+        description,
+        Status(text)
+      `)
     
     if (error) {
       return NextResponse.json(
